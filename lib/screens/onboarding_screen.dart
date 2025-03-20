@@ -16,7 +16,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   // Onboarding content
   final List<Map<String, String>> onboardingData = [
     {
-      'image': 'assets/onboarding1.jpeg', // Add your image path
+      'image': 'assets/logo.png', // Add your image path
       'title': 'Welcome to CampusBite!',
       'description': 'Your go-to app for delicious meals on campus.',
     },
