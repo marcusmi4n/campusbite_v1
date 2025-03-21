@@ -33,6 +33,7 @@ dependencies:
     sdk: flutter
   smooth_page_indicator: ^1.0.0+2 # Fixed: Properly indented under dependencies
   cupertino_icons: ^1.0.8 # Fixed: Properly indented under dependencies
+  lottie: ^2.3.0
 
 dev_dependencies:
   flutter_test:
@@ -55,6 +56,9 @@ flutter:
     - assets/onboarding2.jpeg
     - assets/onboarding3.jpeg
     - assets/logo.png
+    - assets/animations/burger.json
+    - assets/animations/phone_food.json
+    - assets/animations/student_eating.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
