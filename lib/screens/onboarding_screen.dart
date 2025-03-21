@@ -4,30 +4,32 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'login_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
+  const OnboardingScreen({Key? key}) : super(key: key); // Added key parameter
+
   @override
-  _OnboardingScreenState createState() => _OnboardingScreenState();
+  OnboardingScreenState createState() => OnboardingScreenState(); // Removed underscore to make it public
 }
 
-class _OnboardingScreenState extends State<OnboardingScreen> {
+class OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
 
   final List<Map<String, dynamic>> onboardingData = [
     {
-      'type': 'image', // Use 'image' for the first screen
-      'asset': 'assets/logo.png', // Path to your logo/photo
+      'type': 'image',
+      'asset': 'assets/logo.png',
       'title': 'Welcome to CampusBite! 🍔',
       'description': 'Your go-to app for delicious meals on campus.',
     },
     {
-      'type': 'animation', // Use 'animation' for the second screen
+      'type': 'animation',
       'asset': 'assets/animations/phone_food.json',
       'title': 'Easy Ordering 🚀',
       'description':
           'Browse menus, place orders, and enjoy quick delivery right to your doorstep.',
     },
     {
-      'type': 'animation', // Use 'animation' for the third screen
+      'type': 'animation',
       'asset': 'assets/animations/student_eating.json',
       'title': 'Get Started 🍕',
       'description': 'Join CampusBite today and never miss a meal again!',
@@ -77,21 +79,23 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => LoginScreen(),
+                            builder: (context) => const LoginScreen(),
                           ),
                         );
                       },
-                      child: Text('Get Started'),
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.symmetric(
                           horizontal: 50,
                           vertical: 15,
                         ),
-                        primary: Colors.orange,
+                        backgroundColor:
+                            Colors
+                                .orange, // Replaced primary with backgroundColor
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
                       ),
+                      child: Text('Get Started'), // Moved child to the end
                     )
                     : ElevatedButton(
                       onPressed: () {
@@ -100,17 +104,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           curve: Curves.ease,
                         );
                       },
-                      child: Text('Next'),
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.symmetric(
                           horizontal: 50,
                           vertical: 15,
                         ),
-                        primary: Colors.orange,
+                        backgroundColor:
+                            Colors
+                                .orange, // Replaced primary with backgroundColor
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
                       ),
+                      child: Text('Next'), // Moved child to the end
                     ),
               ],
             ),
@@ -127,17 +133,19 @@ class OnboardingPage extends StatelessWidget {
   final String title;
   final String description;
 
-  OnboardingPage({
+  const OnboardingPage({
+    // Added const constructor
+    Key? key, // Added key parameter
     required this.type,
     required this.asset,
     required this.title,
     required this.description,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20), // Added const
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

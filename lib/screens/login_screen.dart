@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class LoginScreen extends StatelessWidget {
+  const LoginScreen({Key? key}) : super(key: key); // Added key parameter
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,7 +16,7 @@ class LoginScreen extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20), // Added const
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -39,6 +41,7 @@ class LoginScreen extends StatelessWidget {
                     borderSide: BorderSide.none,
                   ),
                 ),
+              ),
               SizedBox(height: 20),
               TextField(
                 obscureText: true,
@@ -59,14 +62,15 @@ class LoginScreen extends StatelessWidget {
                 onPressed: () {
                   // Add login logic here
                 },
-                child: Text('Login'),
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                  primary: Colors.orange,
+                  backgroundColor:
+                      Colors.orange, // Replaced primary with backgroundColor
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
                 ),
+                child: Text('Login'), // Moved child to the end
               ),
               SizedBox(height: 10),
               TextButton(
