@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'chatbot_screen.dart'; // Import the ChatbotScreen
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key}); // Use super.key
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('CampusBite 🍔'),
+        title: const Text('CampusBite 🍔'),
         actions: [
           IconButton(
-            icon: Icon(Icons.search),
+            icon: const Icon(Icons.search),
             onPressed: () {
               // Add search functionality
             },
@@ -22,10 +23,10 @@ class HomeScreen extends StatelessWidget {
           // Navigate to the Chatbot Screen
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => chatbot_screen()),
+            MaterialPageRoute(builder: (context) => const ChatbotScreen()),
           );
         },
-        child: Icon(Icons.chat),
+        child: const Icon(Icons.chat),
         backgroundColor: Colors.orange,
       ),
       body: SingleChildScrollView(
@@ -37,7 +38,7 @@ class HomeScreen extends StatelessWidget {
               child: TextField(
                 decoration: InputDecoration(
                   hintText: 'Search for meals...',
-                  prefixIcon: Icon(Icons.search),
+                  prefixIcon: const Icon(Icons.search),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
@@ -60,8 +61,8 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             // AI Suggestions
-            Padding(
-              padding: const EdgeInsets.all(16.0),
+            const Padding(
+              padding: EdgeInsets.all(16.0),
               child: Text(
                 'AI Suggestions for You',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -82,16 +83,19 @@ class CategoryButton extends StatelessWidget {
   final IconData icon;
   final String label;
 
-  const CategoryButton({Key? key, required this.icon, required this.label})
-    : super(key: key);
+  const CategoryButton({
+    super.key,
+    required this.icon,
+    required this.label,
+  }); // Use super.key
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Icon(icon, size: 40, color: Colors.orange),
-        SizedBox(height: 8),
-        Text(label, style: TextStyle(fontSize: 16)),
+        const SizedBox(height: 8),
+        Text(label, style: const TextStyle(fontSize: 16)),
       ],
     );
   }
@@ -101,18 +105,21 @@ class MealCard extends StatelessWidget {
   final String name;
   final double price;
 
-  const MealCard({Key? key, required this.name, required this.price})
-    : super(key: key);
+  const MealCard({
+    super.key,
+    required this.name,
+    required this.price,
+  }); // Use super.key
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: ListTile(
-        leading: Icon(Icons.fastfood, size: 40, color: Colors.orange),
+        leading: const Icon(Icons.fastfood, size: 40, color: Colors.orange),
         title: Text(
           name,
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         subtitle: Text('UGX ${price.toStringAsFixed(0)}'),
         onTap: () {

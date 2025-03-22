@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ChatbotScreen extends StatefulWidget {
-  const ChatbotScreen({Key? key}) : super(key: key);
+  const ChatbotScreen({super.key}); // Use super.key
 
   @override
-  _ChatbotScreenState createState() => _ChatbotScreenState();
+  ChatbotScreenState createState() => ChatbotScreenState();
 }
 
-class _ChatbotScreenState extends State<ChatbotScreen> {
+class ChatbotScreenState extends State<ChatbotScreen> {
   final List<Map<String, String>> _messages = [];
   final TextEditingController _controller = TextEditingController();
 
@@ -49,12 +49,12 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Chatbot 💬')),
+      appBar: AppBar(title: const Text('Chatbot 💬')),
       body: Column(
         children: [
           Expanded(
             child: ListView.builder(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               itemCount: _messages.length,
               itemBuilder: (context, index) {
                 final message = _messages[index];
@@ -64,8 +64,8 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
                   alignment:
                       isUser ? Alignment.centerRight : Alignment.centerLeft,
                   child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 4),
-                    padding: EdgeInsets.all(12),
+                    margin: const EdgeInsets.symmetric(vertical: 4),
+                    padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
                       color: isUser ? Colors.orange : Colors.grey[200],
                       borderRadius: BorderRadius.circular(12),
@@ -97,9 +97,9 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
                     onSubmitted: _sendMessage,
                   ),
                 ),
-                SizedBox(width: 8),
+                const SizedBox(width: 8),
                 IconButton(
-                  icon: Icon(Icons.send, color: Colors.orange),
+                  icon: const Icon(Icons.send, color: Colors.orange),
                   onPressed: () => _sendMessage(_controller.text),
                 ),
               ],
