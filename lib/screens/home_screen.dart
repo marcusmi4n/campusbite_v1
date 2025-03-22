@@ -17,6 +17,17 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Navigate to the Chatbot Screen
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => chatbot_screen()),
+          );
+        },
+        child: Icon(Icons.chat),
+        backgroundColor: Colors.orange,
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -25,7 +36,7 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: TextField(
                 decoration: InputDecoration(
-                  hintText: 'Search for restaurants or meals...',
+                  hintText: 'Search for meals...',
                   prefixIcon: Icon(Icons.search),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
@@ -48,18 +59,18 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            // Featured Restaurants
+            // AI Suggestions
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                'Featured Restaurants',
+                'AI Suggestions for You',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
             ),
-            // Restaurant List
-            RestaurantCard(name: 'Burger Palace', rating: 4.5),
-            RestaurantCard(name: 'Pizza Haven', rating: 4.7),
-            RestaurantCard(name: 'Healthy Bites', rating: 4.2),
+            // Suggested Meals
+            MealCard(name: 'Burger & Fries', price: 15000),
+            MealCard(name: 'Pizza Margherita', price: 20000),
+            MealCard(name: 'Vegetable Salad', price: 10000),
           ],
         ),
       ),
@@ -86,11 +97,11 @@ class CategoryButton extends StatelessWidget {
   }
 }
 
-class RestaurantCard extends StatelessWidget {
+class MealCard extends StatelessWidget {
   final String name;
-  final double rating;
+  final double price;
 
-  const RestaurantCard({Key? key, required this.name, required this.rating})
+  const MealCard({Key? key, required this.name, required this.price})
     : super(key: key);
 
   @override
@@ -98,14 +109,14 @@ class RestaurantCard extends StatelessWidget {
     return Card(
       margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: ListTile(
-        leading: Icon(Icons.restaurant, size: 40, color: Colors.orange),
+        leading: Icon(Icons.fastfood, size: 40, color: Colors.orange),
         title: Text(
           name,
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
-        subtitle: Text('Rating: $rating'),
+        subtitle: Text('UGX ${price.toStringAsFixed(0)}'),
         onTap: () {
-          // Navigate to the restaurant's menu
+          // Navigate to the meal details screen
         },
       ),
     );
