@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:local_auth/local_auth.dart';
 import 'home_screen.dart'; // Import the HomeScreen for navigation
 
 class LoginScreen extends StatefulWidget {
@@ -14,7 +13,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _studentNumberController =
       TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final LocalAuthentication _localAuth = LocalAuthentication();
 
   void _login() {
     final studentNumber = _studentNumberController.text;
@@ -25,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
         const SnackBar(content: Text('Please fill in all fields')),
       );
     } else {
-      // Mock login logic (replace with database integration later)
+      // Mock login logic (replace with backend integration later)
       if (studentNumber == "12345" && password == "password") {
         Navigator.pushReplacement(
           context,
@@ -36,42 +34,6 @@ class _LoginScreenState extends State<LoginScreen> {
           const SnackBar(content: Text('Invalid student number or password')),
         );
       }
-    }
-  }
-
-  void _useBiometrics() async {
-    bool canCheckBiometrics = await _localAuth.canCheckBiometrics;
-    bool isDeviceSupported = await _localAuth.isDeviceSupported();
-
-    if (!canCheckBiometrics || !isDeviceSupported) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Biometric authentication not supported')),
-      );
-      return;
-    }
-
-    try {
-      bool authenticated = await _localAuth.authenticate(
-        localizedReason: 'Authenticate to access CampusBite',
-        options: const AuthenticationOptions(
-          biometricOnly: true, // Only biometrics (no fallback to PIN/pattern)
-        ),
-      );
-
-      if (authenticated) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const HomeScreen()),
-        );
-      } else {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(const SnackBar(content: Text('Authentication failed')));
-      }
-    } catch (e) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Error: $e')));
     }
   }
 
@@ -154,15 +116,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   'Don\'t have an account? Sign Up',
                   style: TextStyle(color: Colors.white),
                 ),
-              ),
-              const SizedBox(height: 10),
-              IconButton(
-                icon: const Icon(
-                  Icons.fingerprint,
-                  size: 40,
-                  color: Colors.white,
-                ),
-                onPressed: _useBiometrics,
               ),
               const SizedBox(height: 20),
               Lottie.asset(
