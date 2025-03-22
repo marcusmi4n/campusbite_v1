@@ -1,14 +1,54 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'home_screen.dart'; // Import the HomeScreen for navigation
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key); // Added key parameter
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _studentNumberController =
+      TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  void _login() {
+    final studentNumber = "2301900993";
+    final password = "Dianah";
+
+    if (studentNumber.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please fill in all fields')),
+      );
+    } else {
+      // Mock login logic
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
+      );
+    }
+  }
+
+  void _navigateToSignup() {
+    // Navigate to Signup Screen (to be implemented later)
+  }
+
+  void _useBiometrics() {
+    // Placeholder for biometric authentication
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Biometric authentication will be implemented later'),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [Colors.orange, Colors.yellow],
             begin: Alignment.topLeft,
@@ -16,11 +56,11 @@ class LoginScreen extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(20), // Added const
+          padding: const EdgeInsets.all(20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 'CampusBite 🍔',
                 style: TextStyle(
                   fontSize: 36,
@@ -28,64 +68,74 @@ class LoginScreen extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextField(
+                controller: _studentNumberController,
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Colors.white,
-                  prefixIcon: Icon(Icons.person, color: Colors.orange),
+                  prefixIcon: const Icon(Icons.person, color: Colors.orange),
                   labelText: 'Student Number',
-                  labelStyle: TextStyle(color: Colors.orange),
+                  labelStyle: const TextStyle(color: Colors.orange),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
                     borderSide: BorderSide.none,
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextField(
+                controller: _passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Colors.white,
-                  prefixIcon: Icon(Icons.lock, color: Colors.orange),
+                  prefixIcon: const Icon(Icons.lock, color: Colors.orange),
                   labelText: 'Password',
-                  labelStyle: TextStyle(color: Colors.orange),
+                  labelStyle: const TextStyle(color: Colors.orange),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
                     borderSide: BorderSide.none,
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {
-                  // Add login logic here
-                },
+                onPressed: _login,
                 style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                  backgroundColor:
-                      Colors.orange, // Replaced primary with backgroundColor
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 50,
+                    vertical: 15,
+                  ),
+                  backgroundColor: Colors.orange,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
                 ),
-                child: Text('Login'), // Moved child to the end
+                child: const Text('Login', style: TextStyle(fontSize: 16)),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               TextButton(
-                onPressed: () {
-                  // Navigate to signup screen
-                },
-                child: Text(
+                onPressed: _navigateToSignup,
+                child: const Text(
                   'Don\'t have an account? Sign Up',
                   style: TextStyle(color: Colors.white),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 10),
+              IconButton(
+                icon: const Icon(
+                  Icons.fingerprint,
+                  size: 40,
+                  color: Colors.white,
+                ),
+                onPressed: _useBiometrics,
+              ),
+              const SizedBox(height: 20),
               Lottie.asset(
                 'assets/animations/food_delivery.json', // Add your Lottie animation
                 height: 150,
+                fit: BoxFit.contain,
               ),
             ],
           ),
