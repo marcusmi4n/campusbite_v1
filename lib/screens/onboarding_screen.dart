@@ -19,14 +19,15 @@ class OnboardingScreenState extends State<OnboardingScreen> {
       'type': 'image',
       'asset': 'assets/logo.png',
       'title': 'Welcome to CampusBite! 🍔',
-      'description': 'Your go-to app for delicious meals on campus.',
+      'description':
+          'Your go-to app for affordable healthy & delicious meals on campus.',
     },
     {
       'type': 'animation',
       'asset': 'assets/animations/phone_food.json',
       'title': 'Easy Ordering 🚀',
       'description':
-          'Browse menus, place orders, and enjoy quick delivery right to your doorstep.',
+          'Browse menus, place orders, and enjoy quick delivery right to your lecture room.',
     },
     {
       'type': 'animation',
