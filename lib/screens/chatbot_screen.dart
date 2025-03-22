@@ -6,20 +6,14 @@ class ChatbotScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('CampusBite Chatbot'),
-      ),
+      appBar: AppBar(title: const Text('CampusBite Chatbot')),
       body: Column(
         children: [
           Expanded(
             child: ListView(
               children: const [
-                ListTile(
-                  title: Text('Bot: Hello! How can I help you today?'),
-                ),
-                ListTile(
-                  title: Text('You: Hi, what’s on the menu?'),
-                ),
+                ListTile(title: Text('Bot: Hello! How can I help you today?')),
+                ListTile(title: Text('You: Hi, what’s on the menu?')),
                 ListTile(
                   title: Text('Bot: Today we have burgers, pizza, and salads!'),
                 ),

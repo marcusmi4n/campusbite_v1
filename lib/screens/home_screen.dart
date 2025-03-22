@@ -259,20 +259,20 @@ final List<Map<String, dynamic>> featuredMeals = [
   {
     'image': 'assets/burger.jpg',
     'name': 'Burger & Fries',
-    'price': 15000,
-    'rating': 4.5,
+    'price': 15000.0, // Ensure this is a double
+    'rating': 4.5, // Ensure this is a double
   },
   {
     'image': 'assets/pizza.jpg',
     'name': 'Pizza Margherita',
-    'price': 20000,
-    'rating': 4.2,
+    'price': 20000.0, // Ensure this is a double
+    'rating': 4.2, // Ensure this is a double
   },
   {
     'image': 'assets/salad.jpg',
     'name': 'Vegetable Salad',
-    'price': 10000,
-    'rating': 4.7,
+    'price': 10000.0, // Ensure this is a double
+    'rating': 4.7, // Ensure this is a double
   },
 ];
 
