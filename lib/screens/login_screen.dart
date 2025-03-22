@@ -39,13 +39,6 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  void _navigateToSignup() {
-    // Navigate to Signup Screen (to be implemented later)
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Signup screen will be implemented later')),
-    );
-  }
-
   void _useBiometrics() async {
     bool canCheckBiometrics = await _localAuth.canCheckBiometrics;
     bool isDeviceSupported = await _localAuth.isDeviceSupported();
@@ -66,7 +59,6 @@ class _LoginScreenState extends State<LoginScreen> {
       );
 
       if (authenticated) {
-        // Mock login logic (replace with database integration later)
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const HomeScreen()),
@@ -155,7 +147,9 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: 10),
               TextButton(
-                onPressed: _navigateToSignup,
+                onPressed: () {
+                  // Navigate to signup screen (to be implemented later)
+                },
                 child: const Text(
                   'Don\'t have an account? Sign Up',
                   style: TextStyle(color: Colors.white),
@@ -172,7 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: 20),
               Lottie.asset(
-                'assets/animations/food_delivery.json', // Add your Lottie animation
+                'assets/animations/food_delivery.json', // Ensure this path is correct
                 height: 150,
                 fit: BoxFit.contain,
               ),

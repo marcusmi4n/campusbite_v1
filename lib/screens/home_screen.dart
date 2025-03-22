@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'chatbot_screen.dart'; // Import the ChatbotScreen
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -7,7 +8,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('CampusBite'),
+        title: const Text('CampusBite 🍔'),
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications),
@@ -31,7 +32,7 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: TextField(
                 decoration: InputDecoration(
-                  hintText: 'Search for food or restaurants...',
+                  hintText: 'Search for meals...',
                   prefixIcon: const Icon(Icons.search),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
@@ -40,24 +41,23 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
 
-            // Categories Section
-            SizedBox(
-              height: 100,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
+            // Categories
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: const [
-                  CategoryCard(
+                  CategoryButton(
                     icon: Icons.breakfast_dining,
                     label: 'Breakfast',
                   ),
-                  CategoryCard(icon: Icons.lunch_dining, label: 'Lunch'),
-                  CategoryCard(icon: Icons.local_cafe, label: 'Snacks'),
-                  CategoryCard(icon: Icons.local_drink, label: 'Drinks'),
+                  CategoryButton(icon: Icons.lunch_dining, label: 'Lunch'),
+                  CategoryButton(icon: Icons.dinner_dining, label: 'Dinner'),
                 ],
               ),
             ),
 
-            // Featured Food Items
+            // Featured Meals
             const Padding(
               padding: EdgeInsets.all(16.0),
               child: Text(
@@ -85,7 +85,7 @@ class HomeScreen extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.all(16.0),
               child: Text(
-                'For You',
+                'AI Suggestions for You',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
             ),
@@ -135,56 +135,22 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-// Mock Data
-final List<Map<String, dynamic>> featuredMeals = [
-  {
-    'image': 'assets/burger.jpg',
-    'name': 'Burger & Fries',
-    'price': 15000,
-    'rating': 4.5,
-  },
-  {
-    'image': 'assets/pizza.jpg',
-    'name': 'Pizza Margherita',
-    'price': 20000,
-    'rating': 4.2,
-  },
-  {
-    'image': 'assets/salad.jpg',
-    'name': 'Vegetable Salad',
-    'price': 10000,
-    'rating': 4.7,
-  },
-];
-
-final List<Map<String, dynamic>> aiSuggestions = [
-  {'text': 'Having a tough day? Try our comfort food specials!'},
-  {'text': 'You might also like...'},
-];
-
 // Custom Widgets
-class CategoryCard extends StatelessWidget {
+class CategoryButton extends StatelessWidget {
   final IconData icon;
   final String label;
 
-  const CategoryCard({Key? key, required this.icon, required this.label})
+  const CategoryButton({Key? key, required this.icon, required this.label})
     : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 8),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, size: 30, color: Colors.orange),
-            const SizedBox(height: 8),
-            Text(label, style: const TextStyle(fontSize: 16)),
-          ],
-        ),
-      ),
+    return Column(
+      children: [
+        Icon(icon, size: 40, color: Colors.orange),
+        const SizedBox(height: 8),
+        Text(label, style: const TextStyle(fontSize: 16)),
+      ],
     );
   }
 }
@@ -274,6 +240,12 @@ class QuickLinkButton extends StatelessWidget {
           icon: Icon(icon, size: 40, color: Colors.orange),
           onPressed: () {
             // Navigate to respective screen
+            if (label == 'Chatbot') {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ChatbotScreen()),
+              );
+            }
           },
         ),
         Text(label, style: const TextStyle(fontSize: 16)),
@@ -281,3 +253,30 @@ class QuickLinkButton extends StatelessWidget {
     );
   }
 }
+
+// Mock Data
+final List<Map<String, dynamic>> featuredMeals = [
+  {
+    'image': 'assets/burger.jpg',
+    'name': 'Burger & Fries',
+    'price': 15000,
+    'rating': 4.5,
+  },
+  {
+    'image': 'assets/pizza.jpg',
+    'name': 'Pizza Margherita',
+    'price': 20000,
+    'rating': 4.2,
+  },
+  {
+    'image': 'assets/salad.jpg',
+    'name': 'Vegetable Salad',
+    'price': 10000,
+    'rating': 4.7,
+  },
+];
+
+final List<Map<String, dynamic>> aiSuggestions = [
+  {'text': 'Having a tough day? Try our comfort food specials!'},
+  {'text': 'You might also like...'},
+];
