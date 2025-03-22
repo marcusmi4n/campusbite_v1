@@ -68,7 +68,7 @@ class OnboardingScreenState extends State<OnboardingScreen> {
                   controller: _pageController,
                   count: onboardingData.length,
                   effect: WormEffect(
-                    activeDotColor: const Color.fromARGB(255, 255, 152, 0),
+                    activeDotColor: const Color.fromARGB(255, 213, 113, 4),
                     dotColor: Colors.grey,
                   ),
                 ),
