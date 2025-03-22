@@ -15,8 +15,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
 
   void _login() {
-    final studentNumber = "2301900993";
-    final password = "Dianah";
+    final studentNumber = _studentNumberController.text;
+    final password = _passwordController.text;
 
     if (studentNumber.isEmpty || password.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
