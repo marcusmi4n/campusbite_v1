@@ -59,6 +59,7 @@ flutter:
     - assets/animations/burger.json
     - assets/animations/phone_food.json
     - assets/animations/student_eating.json
+    - assets/animations/food_delivery.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
