@@ -4,10 +4,10 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'login_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
-  const OnboardingScreen({Key? key}) : super(key: key); // Added key parameter
+  const OnboardingScreen({Key? key}) : super(key: key);
 
   @override
-  OnboardingScreenState createState() => OnboardingScreenState(); // Removed underscore to make it public
+  OnboardingScreenState createState() => OnboardingScreenState();
 }
 
 class OnboardingScreenState extends State<OnboardingScreen> {
@@ -20,7 +20,7 @@ class OnboardingScreenState extends State<OnboardingScreen> {
       'asset': 'assets/logo.png',
       'title': 'Welcome to CampusBite! 🍔',
       'description':
-          'Your go-to app for affordable healthy & delicious meals on campus.',
+          'Your go-to app for affordable, healthy & delicious meals on campus.',
     },
     {
       'type': 'animation',
@@ -69,11 +69,11 @@ class OnboardingScreenState extends State<OnboardingScreen> {
                   controller: _pageController,
                   count: onboardingData.length,
                   effect: WormEffect(
-                    activeDotColor: const Color.fromARGB(255, 213, 113, 4),
-                    dotColor: Colors.grey,
+                    activeDotColor: Colors.orange,
+                    dotColor: Colors.grey.shade300,
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 _currentPage == onboardingData.length - 1
                     ? ElevatedButton(
                       onPressed: () {
@@ -85,39 +85,38 @@ class OnboardingScreenState extends State<OnboardingScreen> {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                           horizontal: 50,
                           vertical: 15,
                         ),
-                        backgroundColor:
-                            Colors
-                                .orange, // Replaced primary with backgroundColor
+                        backgroundColor: Colors.orange,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
                       ),
-                      child: Text('Get Started'), // Moved child to the end
+                      child: const Text(
+                        'Get Started',
+                        style: TextStyle(fontSize: 16),
+                      ),
                     )
                     : ElevatedButton(
                       onPressed: () {
                         _pageController.nextPage(
-                          duration: Duration(milliseconds: 300),
+                          duration: const Duration(milliseconds: 300),
                           curve: Curves.ease,
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                           horizontal: 50,
                           vertical: 15,
                         ),
-                        backgroundColor:
-                            Colors
-                                .orange, // Replaced primary with backgroundColor
+                        backgroundColor: Colors.orange,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
                       ),
-                      child: Text('Next'), // Moved child to the end
+                      child: const Text('Next', style: TextStyle(fontSize: 16)),
                     ),
               ],
             ),
@@ -135,8 +134,7 @@ class OnboardingPage extends StatelessWidget {
   final String description;
 
   const OnboardingPage({
-    // Added const constructor
-    Key? key, // Added key parameter
+    Key? key,
     required this.type,
     required this.asset,
     required this.title,
@@ -146,28 +144,28 @@ class OnboardingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20), // Added const
+      padding: const EdgeInsets.all(20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           if (type == 'image')
-            Image.asset(asset, height: 300)
+            Image.asset(asset, height: 300, fit: BoxFit.contain)
           else if (type == 'animation')
-            Lottie.asset(asset, height: 300),
-          SizedBox(height: 20),
+            Lottie.asset(asset, height: 300, fit: BoxFit.contain),
+          const SizedBox(height: 20),
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
               color: Colors.orange,
             ),
             textAlign: TextAlign.center,
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Text(
             description,
-            style: TextStyle(fontSize: 16, color: Colors.grey),
+            style: TextStyle(fontSize: 16, color: Colors.grey.shade700),
             textAlign: TextAlign.center,
           ),
         ],
